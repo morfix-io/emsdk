@@ -17,6 +17,6 @@ RUN cd /root/ \
  && emcc hello_world.cpp \
  && emcc hello_world.cpp -s WASM=0 \
  && emcc --clear-cache \
- && echo "run addition tests in python"
+ && echo "run addition tests in python" \
  && python test.py
 
