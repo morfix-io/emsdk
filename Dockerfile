@@ -9,6 +9,14 @@ RUN cd /root/ \
  && echo "int main() {}" > hello_world.cpp \
  && apt-get update \
  && apt-get install -y python python3 cmake build-essential openjdk-9-jre-headless \
- && cd /root/emsdk/ \
+ && /root/emsdk/emsdk update-tags \
+ && echo "test the standard workflow a user would do" \
+ && /root/emsdk/emsdk install latest \
+ && /root/emsdk/emsdk activate latest \
+ && source /root/emsdk/emsdk_env.sh --build=Release \
+ && emcc hello_world.cpp \
+ && emcc hello_world.cpp -s WASM=0 \
+ && emcc --clear-cache \
+ && echo "run addition tests in python"
  && python test.py
 
